@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{todo.title}}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Description:   {{todo.description}}</li>
+      <li class="list-group-item">Status: {{todo.status}}</li> 
+      <li class="list-group-item">Deadline: {{todo.deadline}}</li>
+    </ul>
+    <div>
+        <p>Created at: {{todo.created_at}}</p>
+        <p>Updated at: {{todo.updated_at}}</p>
+    </div>
+    <div class="card-body">
+        <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'delete' todo.id %}" class="card-link">Delete</a>
+        <a href="{% url 'update' todo.id %}" class="card-link">Update</a>
+    </form>
+    </div>
+  </div>
+{% endblock%}
